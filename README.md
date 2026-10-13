@@ -15,7 +15,7 @@ trailing commas, a space before function parens, `===` everywhere except against
 ## Install
 
 ```bash
-npm i -D @bitfinexcom/lint-js
+npm i -D @bitfinex/lint-js
 ```
 
 No `eslint` install, and no `eslint.config.js` to write.
@@ -65,7 +65,7 @@ up:
 ```js
 'use strict'
 
-const setup = require('@bitfinexcom/lint-js')
+const setup = require('@bitfinex/lint-js')
 
 module.exports = setup()
 ```
@@ -86,16 +86,16 @@ The package is CommonJS, which ESM imports fine. In a project with
 `"type": "module"` — or in an `eslint.config.mjs` — use a default import:
 
 ```js
-import setup from '@bitfinexcom/lint-js'
+import setup from '@bitfinex/lint-js'
 
 export default setup({ esm: true })
 ```
 
 **Subpath imports need the `.js` extension.** ESM does not infer extensions the
-way `require` does, so `@bitfinexcom/lint-js/lib/ignores` fails to resolve:
+way `require` does, so `@bitfinex/lint-js/lib/ignores` fails to resolve:
 
 ```js
-import { defaultIgnores } from '@bitfinexcom/lint-js/lib/ignores.js'
+import { defaultIgnores } from '@bitfinex/lint-js/lib/ignores.js'
 
 export default setup({ esm: true, ignores: [...defaultIgnores, 'generated/'] })
 ```
@@ -170,7 +170,7 @@ module.exports = setup({
 })
 
 // Keep the default ignores and add one
-const { defaultIgnores } = require('@bitfinexcom/lint-js/lib/ignores')
+const { defaultIgnores } = require('@bitfinex/lint-js/lib/ignores')
 module.exports = setup({ ignores: [...defaultIgnores, 'generated/'] })
 ```
 

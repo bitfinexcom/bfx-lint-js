@@ -2,7 +2,7 @@
 
 ## What this is
 
-`@bitfinexcom/lint-js` — an ESLint flat config plus a CLI, shipping its own
+`@bitfinex/lint-js` — an ESLint flat config plus a CLI, shipping its own
 vendored copy of ESLint. A consumer installs **one** package: no `eslint`
 dependency, no `eslint.config.js` required, nothing resolved from the registry
 at install time.
@@ -62,7 +62,7 @@ vendor/node_modules/      ESLint 8.57.1, committed
 
 `.d.ts` files are **co-located** with the `.js` they describe. Do not move them
 to a `types/` directory: TypeScript resolves subpath types by looking next to
-the `.js`, so moving them breaks `@bitfinexcom/lint-js/lib/ignores` unless a
+the `.js`, so moving them breaks `@bitfinex/lint-js/lib/ignores` unless a
 `typesVersions` mapping is added. The failure is silent — consumers just get
 `any`.
 
@@ -102,7 +102,7 @@ npm run gen:notices
   by two override blocks appended after the main one. `esm` must never reach
   those blocks.
 - **ESM subpath imports need the extension**:
-  `@bitfinexcom/lint-js/lib/ignores.js`. ESM does not infer it. The default
+  `@bitfinex/lint-js/lib/ignores.js`. ESM does not infer it. The default
   import of the package root works fine.
 - **`vendor/` is in `defaultIgnores`**, so this package does not lint its own
   vendored tree.
