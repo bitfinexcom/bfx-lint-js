@@ -1,6 +1,6 @@
 {
   "name": "@bitfinex/lint-js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "ESLint rules applied on bitfinex codebase",
   "keywords": [
     "lint"

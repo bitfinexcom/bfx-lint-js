@@ -2,7 +2,7 @@
 
 const { defaultIgnores } = require('./lib/ignores')
 const { defaultRules } = require('./lib/rules')
-const { commonjsGlobals, mochaGlobals, nodeGlobals } = require('./lib/globals')
+const { commonjsGlobals, mochaGlobals, nodeGlobals, jestGlobals } = require('./lib/globals')
 
 /**
  * Builds the ESLint flat config array for a project.
@@ -23,6 +23,8 @@ const { commonjsGlobals, mochaGlobals, nodeGlobals } = require('./lib/globals')
  *   merged over the built-in Node set.
  * @param {boolean|string[]} [opts.mocha=false] `true` applies Mocha globals to
  *   `test/**\/*.js`, `**\/*.test.js` and `**\/*.spec.js`; an array targets custom globs.
+ *   @param {boolean|string[]} [opts.jest=false] `true` applies Jest globals to
+ *   `test/**\/*.js`, `**\/*.test.js` and `**\/*.spec.js`; an array targets custom globs.
  * @param {boolean} [opts.esm=false] Parse `.js` as ES modules. `.cjs` and `.mjs` always
  *   follow their extension regardless of this flag.
  * @param {Object<string, *>} [opts.rules={}] Rule overrides, merged over the defaults.
@@ -34,6 +36,7 @@ const setup = (opts = {}) => {
     ignores = [...defaultIgnores],
     globals = {},
     mocha = false,
+    jest = false,
     esm = false,
     rules: extraRules = {}
   } = opts
@@ -74,6 +77,15 @@ const setup = (opts = {}) => {
         ? ['test/**/*.js', '**/*.test.js', '**/*.spec.js']
         : mocha,
       languageOptions: { globals: mochaGlobals }
+    })
+  }
+
+  if (jest) {
+    config.push({
+      files: jest === true
+        ? ['test/**/*.js', '**/*.test.js', '**/*.spec.js']
+        : jest,
+      languageOptions: { globals: jestGlobals }
     })
   }
 

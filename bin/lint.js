@@ -11,7 +11,7 @@ const setup = require('../index')
 
 const CONFIG_FILES = ['eslint.config.js', 'eslint.config.mjs', 'eslint.config.cjs']
 
-const BOOLEAN_FLAGS = ['fix', 'esm', 'mocha', 'no-config', 'version', 'help']
+const BOOLEAN_FLAGS = ['fix', 'esm', 'mocha', 'jest', 'no-config', 'version', 'help']
 const VALUE_FLAGS = ['format', 'max-warnings']
 const SHORT_FLAGS = { v: 'version', h: 'help' }
 
@@ -25,6 +25,7 @@ const USAGE = `
     --fix               Write fixes to disk
     --esm               Treat .js as ES modules (implied by "type": "module")
     --mocha             Add Mocha globals to test files
+    --jest              Add Jest globals to test files
     --format <name>     Output format (default: stylish)
     --max-warnings <n>  Exit non-zero past this many warnings (default: -1, off)
     --no-config         Ignore any eslint.config.js and use the built-in config
@@ -135,7 +136,7 @@ const main = async () => {
 
     // `true` tells ESLint not to search for a config file at all.
     options.overrideConfigFile = true
-    options.overrideConfig = setup({ esm, mocha: Boolean(values.mocha) })
+    options.overrideConfig = setup({ esm, mocha: Boolean(values.mocha), jest: Boolean(values.jest) })
   }
 
   const eslint = new FlatESLint(options)

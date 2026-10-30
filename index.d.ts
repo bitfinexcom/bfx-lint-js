@@ -79,6 +79,14 @@ declare namespace setup {
     mocha?: boolean | string[]
 
     /**
+     * `true` applies Jest globals to `test/**\/*.js`, `**\/*.test.js` and
+     * `**\/*.spec.js`; an array of globs targets custom paths.
+     *
+     * @default false
+     */
+    jest?: boolean | string[]
+
+    /**
      * Parse `.js` as ES modules. `.cjs` and `.mjs` always follow their extension
      * regardless of this flag.
      *
