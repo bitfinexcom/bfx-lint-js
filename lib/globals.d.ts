@@ -8,3 +8,6 @@ export declare const commonjsGlobals: Globals
 
 /** Mocha globals, applied only when `setup({ mocha })` is set. */
 export declare const mochaGlobals: Globals
+
+/** Jest globals, applied only when `setup({ jest })` is set. */
+export declare const jestGlobals: Globals

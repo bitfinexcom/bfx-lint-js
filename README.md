@@ -45,6 +45,7 @@ With no paths given, `bfx-lint-js` lints `.`.
 | `--fix` | Write fixes to disk. |
 | `--esm` | Treat `.js` as ES modules. Implied when your `package.json` has `"type": "module"`. |
 | `--mocha` | Add Mocha globals to `test/**/*.js`, `**/*.test.js` and `**/*.spec.js`. |
+| `--jest` | Add Jest globals to `test/**/*.js`, `**/*.test.js` and `**/*.spec.js`. |
 | `--format <name>` | Output format (default: `stylish`). Any ESLint formatter, e.g. `json`, `compact`. |
 | `--max-warnings <n>` | Exit non-zero past this many warnings (default: `-1`, off). |
 | `--no-config` | Ignore any `eslint.config.js` and use the built-in config. |
@@ -111,6 +112,7 @@ setup({
   ignores: ['**/dist/', '**/build/', '**/coverage/', '**/vendor/', '**/tmp/', '**/temp/', '**/.cache/', '**/.nyc_output/', '**/*.min.js', '**/bundle.js'],
   globals: {},
   mocha: false,
+  jest: false,
   esm: false,
   rules: {}
 })
@@ -122,6 +124,7 @@ setup({
 | `ignores` | see above | Paths to skip. **Replaces** the defaults rather than extending them, so re-list any you still want. `node_modules` is always ignored by ESLint itself. |
 | `globals` | `{}` | Extra globals, merged over the built-in Node set. Use the ESLint form: `{ myGlobal: 'readonly' }`. |
 | `mocha` | `false` | `true` applies Mocha globals to `test/**/*.js`, `**/*.test.js` and `**/*.spec.js`. Pass an array of globs to target different paths. |
+| `jest` | `false` | `true` applies Jest globals to `test/**/*.js`, `**/*.test.js` and `**/*.spec.js`. Pass an array of globs to target different paths. |
 | `esm` | `false` | Sets the module system for `.js` files — see below. |
 | `rules` | `{}` | Rule overrides, merged over the defaults. |
 
@@ -162,6 +165,9 @@ that is intended, since you have declared `.js` to be ESM. Put CommonJS code in 
 ```js
 // ESM project with Mocha tests
 module.exports = setup({ esm: true, mocha: true })
+
+// ESM project with Jest tests
+module.exports = setup({ esm: true, jest: true })
 
 // Browser-ish globals and a couple of relaxed rules
 module.exports = setup({
